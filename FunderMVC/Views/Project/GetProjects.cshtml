@@ -1,0 +1,47 @@
+﻿@model ProjectViewModel
+@{
+    ViewData["Title"] = "GetProjects";
+}
+
+<div class="jumbotron">
+    <h4 class="display-4">Discover new, interesting projects to support or create your own!</h4>
+    <p class="lead">Become a funder on projects that excite you. Become a creator of ideas that inspire you.</p>
+</div>
+<!-- Dropdowns -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<hr class="mt-5 mb-5" />
+<!-- Search -->
+<form class="searchform d-flex" asp-controller="Project" asp-action="GetProjects" method="get">
+    <input class="searchform" type="text" placeholder="Search.." asp-for="SearchString" />
+    <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+<!-- Project Card -->
+@foreach (var c in Model.Projects)
+{
+    <div class="card col-mb-5 p-5" padding: 10px;>
+        <div class="card-body">
+            <h3 class="card-title">@c.ProjectName</h3>
+            <h3 class="card-subtitle">@c.Goal€ Fund Goal</h3>
+            <hr class="mt-2 mb-3" />
+            <img style="height: 576px; width: 1024px; display: block;" src="@c.ImagePath " alt="Card image">
+            <hr class="mt-2 mb-3" />
+            <h6 class="card-subtitle mb-2 text-muted">Category: @c.ProjectCategory</h6>
+            <p class="card-text">@c.Description</p>
+            @*<div class="progress">
+            <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
+                60%
+            </div>
+        </div>*@
+            <div class="form-row">
+                <hr class="mt-2 mb-2" />
+                <p class="card-text"><small class="text-muted">Created: @c.Start</small></p>
+                <p></p>
+                <p class="card-text"><small class="text-muted">--Ends: @c.End</small></p>
+            </div>
+            <div>
+                <p><a href="@Url.Action("ProjectDetails", "Project", new { id = c.ProjectId })" class="btn btn-primary float-right" role="button">Details</a></p>
+            </div>
+        </div>
+    </div>
+}

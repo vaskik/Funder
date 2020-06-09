@@ -1,0 +1,108 @@
+﻿@model ProjectViewModel
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title> Create a New Project</title>
+    <link rel="stylesheet" href="/lib/bootstrap/dist/css/bootstrap-flatly.css" />
+    <link rel="stylesheet" href="/css/site.css" />
+</head>
+<body>
+    <div class="container">
+        <main role="main" class="pb-3">
+            <form>
+                <fieldset>
+                    <legend>Create New Project</legend>
+                    <div class="form-group row">
+                    </div>
+                    <!-- Project Title -->
+                    <div class="form-group row-cols-md-2">
+                        <label for="projectTitle">Project Title</label>
+                        <input type="text" class="form-control" id="ProjectName" aria-describedby="" placeholder="Enter a title for your Project" />
+                        <small id="projectTitleHelp" class="form-text text-muted">Use a title which best represents  your project.</small>
+                    </div>
+                    <!-- Project Description -->
+                    <div class="form-group row-cols-md-2">
+                        <label for="exampleFormControlTextarea1">Project Description</label>
+                        <textarea class="form-control" id="Description" rows="6"></textarea>
+                    </div>
+                    <!-- Project Category -->
+                    <div class="form-group row-cols-md-4">
+                        <label for="projectCategory">Select a Category</label>
+                        @*<select class="form-control" id="Category">
+            <option value="Art">Art</option>
+            <option value="Technology">Technology</option>
+            <option value="Games">Games</option>
+            <option value="Business">Business</option>
+        </select>*@
+                        <select class="form-control" id="ProjectCategory">
+                            @{
+
+                                var categories = Enum.GetValues(
+                                    typeof(Funder.Models.ProjectCategory))
+                                    .Cast<Funder.Models.ProjectCategory>();
+                                <option selected="selected" disabled hidden>---Select Category---</option>
+                                foreach (var category in categories)
+                                {
+                                    <option value="@category">@category</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                    <!-- End Date -->
+                    <div class="form-group row-cols-md-4">
+                        <label for="End">End Date</label>
+                        <input type="date" class="form-control" id="End" aria-describedby="" />
+                        <small id="projectTitleHelp" class="form-text text-muted">Use a title which best represents  your project.</small>
+                    </div>
+                    <!-- Upload Photos -->
+                    <div class="form-group">
+                        <label for="photoUpload">Upload Photos</label>
+                        <input type="file" class="form-control-file" id="photoUpload" aria-describedby="fileHelp">
+                        <small id="uploadPhotoHelp" class="form-text text-muted">Upload a .png or .jpeg file.</small>
+                    </div>
+
+                    <hr class="mt-2 mb-3" />
+                    <!-- Low Tier Packages & Rewards -->
+                    <h5>Set Packages & Rewards:</h5>
+                    <div class="form-group row-cols-md-4">
+                        <label class="control-label">Set Package:</label>
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <input type="number" class="form-control" aria-label="Amount" id="Amount" placeholder="Amount">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">€</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row-cols-md-4">
+                        <label class="col-form-label" for="inputDefault">Reward:</label>
+                        <input type="text" class="form-control" placeholder="Set Reward" id="Reward">
+                    </div>
+                    <hr class="mt-2 mb-3" />
+                    <!-- Fund Goal -->
+                    <div class="form-group row-cols-md-4">
+                        <label class="control-label">Fund Goal:</label>
+                        <div class="form-group">
+                            <div class="input-group mb-3">
+                                <input type="text" id="Goal" class="form-control" aria-label="Amount">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">€</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Buttons -->
+                    <input type="reset" class="btn btn-primary disabled" value="Cancel" />
+                    <button type="button" class="btn btn-primary disabled" onclick="doProjectCreate()">Create</button>
+                </fieldset>
+            </form>
+        </main>
+    </div>
+    <script src="/lib/jquery/dist/jquery.min.js"></script>
+    <script src="/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/site.js?v=4q1jwFhaPaZgr8WAUSrux6hAuh0XDg9kPS3xIVq36I0"></script>
+</body>
+</html>

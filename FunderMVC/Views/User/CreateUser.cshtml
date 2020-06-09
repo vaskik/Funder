@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Register";
+}
+<h1 align="center">Create an account</h1>
+@*<form id="userDataForm">
+        <table align="center">
+            <tr><td>Name	</td>  <td><input type="text" id="FirstName" name="FirstName" placeholder="FirstName" required>	</td>  </tr>
+            <tr><td>Surname	</td>  <td> <input type="text" id="LastName" name="LastName" placeholder="LastName" required>	</td>  </tr>
+            <tr><td>Email	</td>  <td> <input type="text" id="Email" name="Email" placeholder="Email" required>	</td>  </tr>
+            <tr>
+                <td>
+                    <input type="button" onclick="doAddUser()"
+                           value="Submit">
+        </table>
+    </form>
+    <div id="responseDiv">   </div>*@
+<form id="userDataForm">
+    <div class="form-row">
+        <div class="col">
+            <label for="FirstName">Enter your fist name:</label>
+            <input type="text" id="FirstName" class="form-control" name="FirstName" placeholder="First name" required>
+            <small id="fistNameHelp" class="form-text text-danger">Required to fill.</small>
+        </div>
+
+        <div class="col">
+            <label for="LastName">Enter your last name:</label>
+            <input type="text" id="LastName" class="form-control" name="LastName" placeholder="Last name" required>
+            <small id="lastNameHelp" class="form-text text-danger">Required to fill.</small>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="Email">Enter your email address:</label>
+            <input type="email" id="Email" class="form-control" name="Email" placeholder="Email" required>
+            <small id="emailHelp" class="form-text text-danger">Required to fill.</small>
+        </div>
+    </div>
+</form>
+<div class="text-right">
+    <input type="button" class="btn btn-primary pull-left" onclick="doAddUser()" value="Submit">
+</div>

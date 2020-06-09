@@ -1,0 +1,41 @@
+﻿@model ProjectDetailsViewModel
+
+@{
+    ViewData["Title"] = "ProjectDetails";
+    var x = Model.UserId;
+    var progress = Math.Round((Model.Project.Progress * 100) / Model.Project.Goal, 2);
+
+}
+    <div class="container-fluid">
+        <div class="card mb-3">
+            <img src="@Model.Project.ImagePath" class="card-img-top" alt="..." style="width:1024px; height:576px;">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Project.ProjectName</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@Model.Project.ProjectCategory</h6>
+                <hr class="mt-2 mb-3" />
+                <p class="card-text">@Model.Project.Description</p>
+                <hr class="mt-2 mb-2" />
+                <div class="progress">
+                    <div class="progress-bar" role="progressbar"
+                         aria-valuenow="@progress"
+                         aria-valuemin="0"
+                         aria-valuemax="100"
+                         style="width: @progress%">
+                        @progress%
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h6 id="Amount">Fundable Package Amount: @Model.Funds.FirstOrDefault().Amount €</h6>
+                    <h6 id="Reward">Package Reward for your support: @Model.Funds.FirstOrDefault().Reward</h6>
+                </div>
+                <div class="form-row">
+                    <hr class="mt-2 mb-2" />
+                    <p class="card-text"><small class="text-muted">Created: @Model.Project.Start</small></p>
+                    <p></p>
+                    <p class="card-text"><small class="text-muted">--Ends: @Model.Project.End</small></p>
+                </div>
+                <button onclick="BuyFund(@Model.Project.ProjectId, @Model.Funds.FirstOrDefault().FundId)" class="btn btn-success float-right">Fund</button>
+                <a class="nav-link" asp-area="" asp-controller="project" asp-action="GetProjects">Back</a>
+            </div>
+            </div>
